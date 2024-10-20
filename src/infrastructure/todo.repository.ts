@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Todo } from '../domain/entities/todo.entity';
 import { TodoRepositoryInterface } from '../domain/interfaces/todo-repository.interface';
-import { TodoStatus } from '../application/dto/status';
+import { TodoStatus } from '../application/dto/todo-status.enum';
 
 @Injectable()
 export class TodoRepository implements TodoRepositoryInterface {
@@ -17,7 +17,7 @@ export class TodoRepository implements TodoRepositoryInterface {
       return this.todoRepository.find();
     }
 
-    return this.todoRepository.find({ where: { status: status || 'all' } });
+    return this.todoRepository.find({ where: { status: status } });
   }
 
   async findOne(id: number): Promise<Todo> {

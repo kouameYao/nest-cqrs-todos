@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-import { TodoStatus } from '../../application/dto/status';
+import { TodoStatus } from '../../application/dto/todo-status.enum';
 
 @Entity()
 export class Todo {

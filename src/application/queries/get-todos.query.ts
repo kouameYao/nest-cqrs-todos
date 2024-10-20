@@ -2,7 +2,7 @@ import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 
 import { TodoRepository } from '../../infrastructure/todo.repository';
 import { Todo } from '../../domain/entities/todo.entity';
-import { TodoStatus } from '../dto/status';
+import { TodoStatus } from '../dto/todo-status.enum';
 
 export class GetTodosQuery {
   constructor(public readonly status: TodoStatus) {}

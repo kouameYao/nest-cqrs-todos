@@ -14,7 +14,7 @@ import { UpdateTodoCommand } from '../application/commands/update-todo.command';
 import { DeleteTodoCommand } from '../application/commands/delete-todo.command';
 import { GetTodosQuery } from '../application/queries/get-todos.query';
 import { GetTodoByIdQuery } from '../application/queries/get-todo-by-id.query';
-import { TodoStatus } from '../application/dto/status';
+import { TodoStatus } from '../application/dto/todo-status.enum';
 
 @Controller('todos')
 export class TodosController {
