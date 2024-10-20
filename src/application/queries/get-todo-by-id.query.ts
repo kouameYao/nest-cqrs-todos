@@ -1,6 +1,6 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 
-import { TodoRepository } from '../repository/todo.repository';
+import { TodoRepository } from '../../infrastructure/todo.repository';
 
 export class GetTodoByIdQuery {
   constructor(public readonly id: number) {}

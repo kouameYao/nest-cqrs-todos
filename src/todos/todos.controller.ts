@@ -9,12 +9,12 @@ import {
   Query,
 } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { CreateTodoCommand } from './commands/create-todo.command';
-import { UpdateTodoCommand } from './commands/update-todo.command';
-import { DeleteTodoCommand } from './commands/delete-todo.command';
-import { GetTodosQuery } from './queries/get-todos.query';
-import { GetTodoByIdQuery } from './queries/get-todo-by-id.query';
-import { TodoStatus } from './entities/todo.entity';
+import { CreateTodoCommand } from '../application/commands/create-todo.command';
+import { UpdateTodoCommand } from '../application/commands/update-todo.command';
+import { DeleteTodoCommand } from '../application/commands/delete-todo.command';
+import { GetTodosQuery } from '../application/queries/get-todos.query';
+import { GetTodoByIdQuery } from '../application/queries/get-todo-by-id.query';
+import { TodoStatus } from '../application/dto/status';
 
 @Controller('todos')
 export class TodosController {

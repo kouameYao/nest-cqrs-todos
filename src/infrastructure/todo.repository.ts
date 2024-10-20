@@ -1,17 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-
-import { Todo, TodoStatus } from '../entities/todo.entity';
+import { Todo } from '../domain/entities/todo.entity';
+import { TodoRepositoryInterface } from '../domain/interfaces/todo-repository.interface';
+import { TodoStatus } from '../application/dto/status';
 
 @Injectable()
-export class TodoRepository {
+export class TodoRepository implements TodoRepositoryInterface {
   constructor(
     @InjectRepository(Todo)
     private todoRepository: Repository<Todo>,
   ) {}
 
-  async findAll(status: TodoStatus) {
+  async findAll(status: TodoStatus): Promise<Todo[]> {
     if (status === 'all') {
       return this.todoRepository.find();
     }

@@ -1,8 +1,8 @@
 import { CommandHandler, ICommandHandler, EventBus } from '@nestjs/cqrs';
 
-import { TodoCompletedEvent } from '../events/todo-completed.event';
-import { TodoRepository } from '../repository/todo.repository';
-import { TodoStatus } from '../entities/todo.entity';
+import { TodoCompletedEvent } from '../../domain/events/todo-completed.event';
+import { TodoRepository } from '../../infrastructure/todo.repository';
+import { TodoStatus } from '../dto/status';
 
 export class UpdateTodoCommand {
   constructor(public readonly id: number, public readonly status: TodoStatus) {}

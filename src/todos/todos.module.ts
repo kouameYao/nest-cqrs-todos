@@ -2,19 +2,19 @@ import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TodosController } from './todos.controller';
-import { Todo } from './entities/todo.entity';
-import { CreateTodoHandler } from './commands/create-todo.command';
-import { UpdateTodoHandler } from './commands/update-todo.command';
-import { DeleteTodoHandler } from './commands/delete-todo.command';
-import { GetTodosHandler } from './queries/get-todos.query';
-import { GetTodoByIdHandler } from './queries/get-todo-by-id.query';
-import { TodosSagas } from './sagas/todos.sagas';
+import { Todo } from '../domain/entities/todo.entity';
+import { CreateTodoHandler } from '../application/commands/create-todo.command';
+import { UpdateTodoHandler } from '../application/commands/update-todo.command';
+import { DeleteTodoHandler } from '../application/commands/delete-todo.command';
+import { GetTodosHandler } from '../application/queries/get-todos.query';
+import { GetTodoByIdHandler } from '../application/queries/get-todo-by-id.query';
+import { TodosSagas } from '../application/sagas/todos.sagas';
 import {
   TodoCreatedHandler,
   TodoCompletedHandler,
   TodoDeletedHandler,
-} from './events/todo-event-handlers';
-import { TodoRepository } from './repository/todo.repository';
+} from '../domain/events/todo-event-handlers';
+import { TodoRepository } from '../infrastructure/todo.repository';
 
 const CommandHandlers = [
   CreateTodoHandler,

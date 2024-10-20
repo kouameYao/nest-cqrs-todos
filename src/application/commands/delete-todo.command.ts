@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 
-import { TodoRepository } from '../repository/todo.repository';
+import { TodoRepository } from '../../infrastructure/todo.repository';
 
 export class DeleteTodoCommand {
   constructor(public readonly id: number) {}

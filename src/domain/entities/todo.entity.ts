@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-export type TodoStatus = 'completed' | 'in-progress' | 'to-do' | 'all';
+import { TodoStatus } from '../../application/dto/status';
 
 @Entity()
 export class Todo {

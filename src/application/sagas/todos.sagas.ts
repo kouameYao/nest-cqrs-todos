@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
 import { ICommand, ofType, Saga } from '@nestjs/cqrs';
-import { TodoCreatedEvent } from '../events/todo-created.event';
+import { TodoCreatedEvent } from '../../domain/events/todo-created.event';
 import { NotifyUserCommand } from '../commands/notify-user.command';
 
 @Injectable()
