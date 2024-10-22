@@ -15,6 +15,7 @@ import {
   TodoDeletedHandler,
 } from '../domain/events/todo-event-handlers';
 import { TodoRepository } from '../infrastructure/todo.repository';
+import { NotifyUserHandler } from '../application/commands/notify-user.command';
 
 const CommandHandlers = [
   CreateTodoHandler,
@@ -26,6 +27,7 @@ const EventHandlers = [
   TodoCreatedHandler,
   TodoCompletedHandler,
   TodoDeletedHandler,
+  NotifyUserHandler,
 ];
 
 @Module({
