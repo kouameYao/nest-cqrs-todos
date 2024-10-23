@@ -1,12 +1,8 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 
-import { TodoRepository } from '../../infrastructure/todo.repository';
-import { Todo } from '../../domain/entities/todo.entity';
-import { TodoStatus } from '../dto/todo-status.enum';
-
-export class GetTodosQuery {
-  constructor(public readonly status: TodoStatus) {}
-}
+import { TodoRepository } from '../../../infrastructure/todo.repository';
+import { Todo } from '../../../domain/entities/todo.entity';
+import { GetTodosQuery } from '../impl';
 
 @QueryHandler(GetTodosQuery)
 export class GetTodosHandler implements IQueryHandler<GetTodosQuery> {

@@ -1,10 +1,7 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 
-import { TodoRepository } from '../../infrastructure/todo.repository';
-
-export class GetTodoByIdQuery {
-  constructor(public readonly id: number) {}
-}
+import { TodoRepository } from '../../../infrastructure/todo.repository';
+import { GetTodoByIdQuery } from '../impl';
 
 @QueryHandler(GetTodoByIdQuery)
 export class GetTodoByIdHandler implements IQueryHandler<GetTodoByIdQuery> {

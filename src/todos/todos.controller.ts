@@ -9,12 +9,13 @@ import {
   Query,
 } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { CreateTodoCommand } from '../application/commands/create-todo.command';
-import { UpdateTodoCommand } from '../application/commands/update-todo.command';
-import { DeleteTodoCommand } from '../application/commands/delete-todo.command';
-import { GetTodosQuery } from '../application/queries/get-todos.query';
-import { GetTodoByIdQuery } from '../application/queries/get-todo-by-id.query';
+import { GetTodosQuery } from '../application/queries/impl/get-todos.query';
+import { GetTodoByIdQuery } from '../application/queries/impl/get-todo-by-id.query';
 import { TodoStatus } from '../application/dto/todo-status.enum';
+import { CreateTodoCommand } from '../application/commands/impl/create-todo.command';
+import { UpdateTodoCommand } from '../application/commands/impl/update-todo.command';
+import { DeleteTodoCommand } from '../application/commands/impl/delete-todo.command';
+import { CreateTodoDto, UpdateTodoDto } from '../domain/entities/todo.entity';
 
 @Controller('todos')
 export class TodosController {
@@ -33,16 +34,26 @@ export class TodosController {
   }
 
   @Post()
-  async createTodo(@Body('title') title: string) {
-    return this.commandBus.execute(new CreateTodoCommand(title));
+  async createTodo(@Body() createTodoDto: CreateTodoDto) {
+    return this.commandBus.execute(
+      new CreateTodoCommand(createTodoDto.title, createTodoDto.description),
+    );
   }
 
   @Put(':id')
   async updateTodo(
     @Param('id') id: number,
     @Body('status') status: TodoStatus,
+    @Body() updateTodoDto: UpdateTodoDto,
   ) {
-    return this.commandBus.execute(new UpdateTodoCommand(id, status));
+    return this.commandBus.execute(
+      new UpdateTodoCommand(
+        id,
+        status,
+        updateTodoDto?.title,
+        updateTodoDto?.description,
+      ),
+    );
   }
 
   @Delete(':id')

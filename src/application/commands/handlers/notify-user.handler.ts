@@ -1,11 +1,5 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-
-export class NotifyUserCommand {
-  constructor(
-    public readonly todoId: number,
-    public readonly message: string,
-  ) {}
-}
+import { NotifyUserCommand } from '../impl/notify-user.command';
 
 @CommandHandler(NotifyUserCommand)
 export class NotifyUserHandler implements ICommandHandler<NotifyUserCommand> {

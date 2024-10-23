@@ -10,9 +10,21 @@ export class Todo {
   @Column()
   title: string;
 
+  @Column({ nullable: true })
+  description: string;
+
   @Column({ default: 'to-do' })
   status: TodoStatus;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
 }
+
+export type CreateTodoDto = {
+  title: string;
+  description: string;
+};
+
+export type UpdateTodoDto = Partial<CreateTodoDto> & {
+  status?: TodoStatus;
+};

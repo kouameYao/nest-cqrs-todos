@@ -21,7 +21,16 @@ export class TodoRepository implements TodoRepositoryInterface {
   }
 
   async findOne(id: number): Promise<Todo> {
-    return this.todoRepository.findOne({ where: { id } });
+    const existingTodo = this.todoRepository.findOne({ where: { id } });
+
+    if (!existingTodo) {
+      return {
+        status: '404',
+        message: 'Todo not found',
+      } as any;
+    }
+
+    return existingTodo;
   }
 
   async create(todoData: Partial<Todo>): Promise<Todo> {
@@ -30,7 +39,10 @@ export class TodoRepository implements TodoRepositoryInterface {
   }
 
   async update(id: number, todoData: Partial<Todo>): Promise<Todo> {
-    await this.todoRepository.update(id, todoData);
+    const existing = await this.findOne(id);
+
+    await this.todoRepository.update(id, { ...existing, ...todoData });
+
     return this.todoRepository.findOne({ where: { id } });
   }
 
