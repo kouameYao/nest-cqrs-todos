@@ -6,6 +6,11 @@
       "use": "@vercel/node"
     }
   ],
+  "output": {
+    "dist/main.js": {
+      "handler": "dist/main.js"
+    }
+  },
   "routes": [
     {
       "src": "/(.*)",
